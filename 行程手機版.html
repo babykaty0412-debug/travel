@@ -121,6 +121,9 @@
   .time{display:inline-block; font-size:12px; font-weight:800; color:var(--accent); letter-spacing:.03em;}
   .stop.g .time{color:var(--green);}
   .card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:13px 14px; margin-top:5px; box-shadow:var(--shadow);}
+  .card.hl{border-color:var(--accent); background:
+    linear-gradient(0deg, color-mix(in srgb, var(--glow) 12%, var(--surface)), var(--surface));
+    box-shadow:0 4px 16px color-mix(in srgb, var(--accent) 24%, transparent);}
   .card .h{font-size:15.5px; font-weight:800; margin:0;}
   .card .drive{font-size:11.5px; color:var(--ink-faint); font-weight:700; margin:2px 0 0;}
   .card ul{margin:8px 0 0; padding-left:16px;}
@@ -253,9 +256,14 @@
 
       <div class="stop">
         <span class="time tnum">17:30</span>
-        <div class="card">
-          <p class="h">入住溪隱之宿 · 晚餐 · 夜放天燈 🏮</p>
-          <ul><li>晚上在平溪老街放天燈最浪漫，就在住宿旁</li></ul>
+        <div class="card hl">
+          <p class="h">入住溪隱之宿 · 晚餐 · ⭐ 夜放天燈 🏮</p>
+          <ul>
+            <li><b>週五夜人潮最少</b>：平日遊客比週六少，不用排隊、拍照乾淨</li>
+            <li>首選<b>平溪老街</b>（民宿旁最方便，放完直接回房）</li>
+            <li>想在鐵軌上放 → <b>十分老街</b>，傍晚 4–5 點趕在遊覽車散場前</li>
+          </ul>
+          <a class="mini-nav" href="https://www.google.com/maps/search/?api=1&query=平溪老街" target="_blank" rel="noopener">導航 ↗</a>
         </div>
       </div>
 
