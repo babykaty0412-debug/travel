@@ -1,0 +1,411 @@
+<title>平溪 × 深坑 親子自駕 3天2夜</title>
+<style>
+  :root{
+    --bg:#f6efe1; --bg2:#efe4d0;
+    --surface:#fffaf0; --surface-2:#fbf3e3;
+    --ink:#2b2018; --ink-soft:#6d5d4d; --ink-faint:#93826f;
+    --accent:#d5601f; --accent-2:#e8893a; --glow:#f0a24b;
+    --green:#4f7a55; --green-soft:#e2ece0;
+    --line:#e6d9c3; --line-strong:#d8c6a8;
+    --flame:#d9422a;
+    --shadow:0 6px 22px rgba(90,60,20,.10);
+    --radius:18px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#121a25; --bg2:#0e151e;
+      --surface:#1b2635; --surface-2:#212e3f;
+      --ink:#f2e9d7; --ink-soft:#b8ad9a; --ink-faint:#8b8271;
+      --accent:#f0a24b; --accent-2:#f6b862; --glow:#f6b862;
+      --green:#7fae8b; --green-soft:#22322a;
+      --line:#2b3a4c; --line-strong:#37485c;
+      --flame:#ef6a48;
+      --shadow:0 8px 26px rgba(0,0,0,.38);
+    }
+  }
+  :root[data-theme="light"]{
+    --bg:#f6efe1; --bg2:#efe4d0;
+    --surface:#fffaf0; --surface-2:#fbf3e3;
+    --ink:#2b2018; --ink-soft:#6d5d4d; --ink-faint:#93826f;
+    --accent:#d5601f; --accent-2:#e8893a; --glow:#f0a24b;
+    --green:#4f7a55; --green-soft:#e2ece0;
+    --line:#e6d9c3; --line-strong:#d8c6a8;
+    --flame:#d9422a;
+    --shadow:0 6px 22px rgba(90,60,20,.10);
+  }
+  :root[data-theme="dark"]{
+    --bg:#121a25; --bg2:#0e151e;
+    --surface:#1b2635; --surface-2:#212e3f;
+    --ink:#f2e9d7; --ink-soft:#b8ad9a; --ink-faint:#8b8271;
+    --accent:#f0a24b; --accent-2:#f6b862; --glow:#f6b862;
+    --green:#7fae8b; --green-soft:#22322a;
+    --line:#2b3a4c; --line-strong:#37485c;
+    --flame:#ef6a48;
+    --shadow:0 8px 26px rgba(0,0,0,.38);
+  }
+
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;}
+  .wrap{
+    font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,-apple-system,"Segoe UI",sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(120% 60% at 80% -8%, color-mix(in srgb, var(--glow) 26%, transparent), transparent 60%),
+      linear-gradient(var(--bg), var(--bg2));
+    min-height:100vh;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    letter-spacing:.01em;
+  }
+  .page{max-width:480px; margin:0 auto; padding:0 16px 64px; overflow-x:hidden;}
+  .tnum{font-variant-numeric:tabular-nums;}
+
+  /* Hero */
+  .hero{position:relative; padding:52px 4px 26px; text-align:center; overflow:hidden;}
+  .lantern{position:absolute; width:26px; height:34px; border-radius:44% 44% 40% 40%;
+    background:linear-gradient(180deg, var(--glow), var(--flame));
+    box-shadow:0 0 22px 4px color-mix(in srgb, var(--glow) 55%, transparent);
+    opacity:.75;}
+  .lantern::after{content:""; position:absolute; left:50%; bottom:-5px; width:2px; height:6px; background:var(--flame); transform:translateX(-50%);}
+  .l1{top:26px; left:14px; transform:scale(.8); animation:float 7s ease-in-out infinite;}
+  .l2{top:66px; right:20px; transform:scale(1.05); animation:float 9s ease-in-out infinite .8s;}
+  .l3{top:120px; left:36px; transform:scale(.6); opacity:.5; animation:float 8s ease-in-out infinite .3s;}
+  @keyframes float{0%,100%{transform:translateY(0) scale(var(--s,1));}50%{transform:translateY(-12px) scale(var(--s,1));}}
+  .eyebrow{font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:var(--accent); font-weight:700; margin:0 0 10px;}
+  h1{font-size:31px; line-height:1.25; margin:0; font-weight:800; text-wrap:balance; letter-spacing:.02em;}
+  h1 .amp{color:var(--accent); font-weight:600; padding:0 2px;}
+  .sub{margin:14px 0 0; color:var(--ink-soft); font-size:14.5px;}
+  .meta-row{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:16px;}
+  .chip{font-size:12.5px; padding:5px 12px; border-radius:999px; background:var(--surface); border:1px solid var(--line); color:var(--ink-soft); font-weight:600;}
+  .chip b{color:var(--ink);}
+
+  /* Sticky nav */
+  nav{position:sticky; top:0; z-index:20; margin:14px -16px 6px; padding:9px 16px;
+    background:color-mix(in srgb, var(--bg) 82%, transparent); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);}
+  .nav-inner{display:flex; gap:7px; overflow-x:auto; scrollbar-width:none; -ms-overflow-style:none;}
+  .nav-inner::-webkit-scrollbar{display:none;}
+  .nav-inner a{flex:0 0 auto; text-decoration:none; font-size:13px; font-weight:700; color:var(--ink-soft);
+    padding:7px 13px; border-radius:999px; border:1px solid var(--line); background:var(--surface); white-space:nowrap;}
+  .nav-inner a:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  /* Stay cards */
+  .stays{display:grid; gap:12px; margin:20px 0 8px;}
+  .stay{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:16px 16px 14px; box-shadow:var(--shadow); position:relative;}
+  .stay .night{font-size:11.5px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--green); margin-bottom:3px;}
+  .stay .name{font-size:18px; font-weight:800; margin:0;}
+  .stay .addr{font-size:13px; color:var(--ink-soft); margin:5px 0 0;}
+  .stay .feat{font-size:12.5px; color:var(--ink-faint); margin:8px 0 0;}
+
+  .navbtn{display:inline-flex; align-items:center; gap:5px; margin-top:12px; text-decoration:none;
+    font-size:13px; font-weight:700; color:#fff; background:linear-gradient(180deg,var(--accent-2),var(--accent));
+    padding:8px 14px; border-radius:11px; box-shadow:0 3px 10px color-mix(in srgb,var(--accent) 40%, transparent);}
+  .navbtn:focus-visible{outline:2px solid var(--ink); outline-offset:2px;}
+  .navbtn.tel{background:var(--surface-2); color:var(--accent); border:1px solid var(--line-strong); box-shadow:none;}
+
+  /* Day sections */
+  section.day{scroll-margin-top:64px; margin-top:30px;}
+  .day-head{display:flex; align-items:baseline; gap:10px; margin-bottom:4px;}
+  .day-tag{font-size:12px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:#fff;
+    background:var(--accent); padding:4px 10px; border-radius:8px;}
+  .day-date{font-size:14px; color:var(--ink-soft); font-weight:700;}
+  .day-title{font-size:20px; font-weight:800; margin:2px 0 16px;}
+
+  .timeline{position:relative; padding-left:20px;}
+  .timeline::before{content:""; position:absolute; left:5px; top:6px; bottom:6px; width:2px; background:var(--line-strong);}
+  .stop{position:relative; margin-bottom:16px;}
+  .stop::before{content:""; position:absolute; left:-18px; top:5px; width:11px; height:11px; border-radius:50%;
+    background:var(--surface); border:2.5px solid var(--accent);}
+  .stop.g::before{border-color:var(--green);}
+  .time{display:inline-block; font-size:12px; font-weight:800; color:var(--accent); letter-spacing:.03em;}
+  .stop.g .time{color:var(--green);}
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:13px 14px; margin-top:5px; box-shadow:var(--shadow);}
+  .card .h{font-size:15.5px; font-weight:800; margin:0;}
+  .card .drive{font-size:11.5px; color:var(--ink-faint); font-weight:700; margin:2px 0 0;}
+  .card ul{margin:8px 0 0; padding-left:16px;}
+  .card li{font-size:13px; color:var(--ink-soft); margin:3px 0;}
+  .card li b{color:var(--ink);}
+  .mini-nav{display:inline-flex; align-items:center; gap:4px; margin-top:10px; text-decoration:none;
+    font-size:12px; font-weight:700; color:var(--accent); border:1px solid var(--line-strong);
+    padding:5px 11px; border-radius:9px; background:var(--surface-2);}
+  .mini-nav:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  .opt{border-left:3px solid var(--green);}
+  .optbadge{font-size:11px; font-weight:800; color:var(--green); letter-spacing:.08em;}
+
+  /* Info blocks */
+  .block{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:16px; margin-top:14px; box-shadow:var(--shadow);}
+  .block h3{margin:0 0 12px; font-size:16px; font-weight:800; display:flex; align-items:center; gap:8px;}
+  .agegrid{display:grid; gap:12px;}
+  .agecard{border:1px solid var(--line); border-radius:13px; padding:12px 13px; background:var(--surface-2);}
+  .agecard .who{font-size:14px; font-weight:800; margin:0 0 6px; color:var(--accent);}
+  .agecard.green .who{color:var(--green);}
+  .agecard ul{margin:0; padding-left:16px;}
+  .agecard li{font-size:12.5px; color:var(--ink-soft); margin:4px 0;}
+  .agecard li b{color:var(--ink);}
+
+  .tips{list-style:none; margin:0; padding:0; display:grid; gap:9px;}
+  .tips li{display:flex; gap:9px; font-size:13px; color:var(--ink-soft); align-items:flex-start;}
+  .tips .ic{flex:0 0 auto; width:22px; height:22px; border-radius:7px; background:var(--green-soft); color:var(--green);
+    display:grid; place-items:center; font-size:12px; margin-top:1px;}
+  .tips li b{color:var(--ink);}
+
+  table.drv{width:100%; border-collapse:collapse; font-size:13px;}
+  table.drv td{padding:8px 4px; border-bottom:1px solid var(--line);}
+  table.drv tr:last-child td{border-bottom:none;}
+  table.drv td:last-child{text-align:right; font-weight:800; color:var(--accent); white-space:nowrap;}
+
+  footer{text-align:center; margin-top:34px; color:var(--ink-faint); font-size:12.5px; line-height:1.9;}
+  footer .flame{font-size:20px;}
+
+  @media (prefers-reduced-motion:reduce){
+    .lantern{animation:none !important;}
+  }
+</style>
+
+<div class="wrap">
+<div class="page">
+
+  <header class="hero">
+    <span class="lantern l1" style="--s:.8"></span>
+    <span class="lantern l2" style="--s:1.05"></span>
+    <span class="lantern l3" style="--s:.6"></span>
+    <p class="eyebrow">Family Road Trip</p>
+    <h1>平溪 <span class="amp">×</span> 深坑<br>親子自駕小旅行</h1>
+    <p class="sub">沿著 106 縣道，天燈線一路慢玩到深坑老街</p>
+    <div class="meta-row">
+      <span class="chip">🗓 <b>7/24–7/26</b>　週五→週日</span>
+      <span class="chip">👨‍👩‍👧‍👦 <b>2 大 2 小</b></span>
+      <span class="chip">🚗 自駕</span>
+    </div>
+  </header>
+
+  <nav aria-label="快速跳轉">
+    <div class="nav-inner">
+      <a href="#stays">住宿</a>
+      <a href="#day1">Day 1 平溪</a>
+      <a href="#day2">Day 2 深坑</a>
+      <a href="#day3">Day 3 回家</a>
+      <a href="#kids">帶小孩</a>
+      <a href="#drive">自駕重點</a>
+    </div>
+  </nav>
+
+  <!-- STAYS -->
+  <section id="stays" class="stays" style="scroll-margin-top:64px;">
+    <div class="stay">
+      <div class="night">7/24 週五 · 第一晚</div>
+      <p class="name">溪隱之宿民宿</p>
+      <p class="addr">新北市平溪區 · 平溪老街、平溪郵局旁</p>
+      <p class="feat">平溪天燈線核心位置，放天燈走幾步就到</p>
+      <a class="navbtn" href="https://www.google.com/maps/search/?api=1&query=溪隱之宿民宿+平溪" target="_blank" rel="noopener">📍 導航前往</a>
+    </div>
+    <div class="stay">
+      <div class="night">7/25 週六 · 第二晚</div>
+      <p class="name">福容大飯店 台北二館</p>
+      <p class="addr">新北市深坑區北深路三段 236 號</p>
+      <p class="feat">🏊 室內游泳池 · 🅿 免費停車 · 深坑老街步行可到</p>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <a class="navbtn" href="https://www.google.com/maps/search/?api=1&query=福容大飯店台北二館+深坑" target="_blank" rel="noopener">📍 導航前往</a>
+        <a class="navbtn tel" href="tel:0226620088">☎ 02-2662-0088</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DAY 1 -->
+  <section id="day1" class="day">
+    <div class="day-head"><span class="day-tag">Day 1</span><span class="day-date">7/24 週五 · 中午抵達</span></div>
+    <p class="day-title">平溪天燈線，玩整個下午 🏮</p>
+    <div class="timeline">
+
+      <div class="stop">
+        <span class="time tnum">11:35</span>
+        <div class="card">
+          <p class="h">抵達平溪 · 老街午餐</p>
+          <ul><li>老街小吃、雞捲、芋圓，先填飽肚子</li></ul>
+          <a class="mini-nav" href="https://www.google.com/maps/search/?api=1&query=平溪老街" target="_blank" rel="noopener">導航 ↗</a>
+        </div>
+      </div>
+
+      <div class="stop">
+        <span class="time tnum">13:30</span>
+        <div class="card">
+          <p class="h">十分瀑布 & 十分老街</p>
+          <p class="drive">🚗 平溪往東約 10–12 分</p>
+          <ul>
+            <li><b>十分瀑布</b>：台版尼加拉瀑布，步道平緩可推車（免費入園）</li>
+            <li><b>十分老街</b>：鐵軌上放天燈，火車經過超有戲 🚂</li>
+          </ul>
+          <a class="mini-nav" href="https://www.google.com/maps/search/?api=1&query=十分瀑布" target="_blank" rel="noopener">導航 ↗</a>
+        </div>
+      </div>
+
+      <div class="stop g">
+        <span class="time tnum">16:00</span>
+        <div class="card">
+          <p class="h">菁桐老街 & 車站 <span class="optbadge">選配</span></p>
+          <p class="drive">🚗 十分→菁桐約 20 分</p>
+          <ul><li>日式老車站、許願竹筒，人少好拍照</li></ul>
+          <a class="mini-nav" href="https://www.google.com/maps/search/?api=1&query=菁桐老街" target="_blank" rel="noopener">導航 ↗</a>
+        </div>
+      </div>
+
+      <div class="stop">
+        <span class="time tnum">17:30</span>
+        <div class="card">
+          <p class="h">入住溪隱之宿 · 晚餐 · 夜放天燈 🏮</p>
+          <ul><li>晚上在平溪老街放天燈最浪漫，就在住宿旁</li></ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DAY 2 -->
+  <section id="day2" class="day">
+    <div class="day-head"><span class="day-tag">Day 2</span><span class="day-date">7/25 週六</span></div>
+    <p class="day-title">平溪 → 動物園 → 深坑 🐼</p>
+    <div class="timeline">
+
+      <div class="stop">
+        <span class="time">上午</span>
+        <div class="card">
+          <p class="h">退房，沿 106 往西下山</p>
+        </div>
+      </div>
+
+      <div class="stop">
+        <span class="time tnum">09:30</span>
+        <div class="card">
+          <p class="h">臺北市立動物園（木柵）</p>
+          <p class="drive">🚗 平溪→動物園約 40 分</p>
+          <ul>
+            <li>貓熊、無尾熊、企鵝館（成人 NT$60，<b>未滿 6 歲免費</b>）</li>
+            <li>園區大，搭<b>遊園列車</b>省小小孩腳力，鎖定 3–4 館別就好</li>
+          </ul>
+          <a class="mini-nav" href="https://www.google.com/maps/search/?api=1&query=臺北市立動物園" target="_blank" rel="noopener">導航 ↗</a>
+        </div>
+      </div>
+
+      <div class="stop g">
+        <span class="time">午餐</span>
+        <div class="card">
+          <p class="h">深坑老街 🥘</p>
+          <p class="drive">🚗 動物園→深坑約 12–15 分</p>
+          <ul><li>招牌深坑臭豆腐、豆腐冰淇淋、古早味小吃</li></ul>
+          <a class="mini-nav" href="https://www.google.com/maps/search/?api=1&query=深坑老街" target="_blank" rel="noopener">導航 ↗</a>
+        </div>
+      </div>
+
+      <div class="stop">
+        <span class="time tnum">15:00</span>
+        <div class="card">
+          <p class="h">入住福容台北二館 · 泳池放電 🏊</p>
+          <ul><li>深坑老街步行可到，下午讓小孩玩水放電</li></ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DAY 3 -->
+  <section id="day3" class="day">
+    <div class="day-head"><span class="day-tag">Day 3</span><span class="day-date">7/26 週日 · 回家</span></div>
+    <p class="day-title">深坑周邊玩一站，再上國道回家 🚗</p>
+    <div class="timeline">
+
+      <div class="stop">
+        <span class="time">上午</span>
+        <div class="card">
+          <p class="h">飯店早餐、泳池，悠閒不趕</p>
+          <ul><li>~10:30 退房，上午擇一 👇</li></ul>
+        </div>
+      </div>
+
+      <div class="stop g">
+        <span class="time">方案 A</span>
+        <div class="card opt">
+          <p class="h">貓空纜車 + 貓空喝茶</p>
+          <ul><li>深坑旁，週日營運，纜車俯瞰台北盆地，親子友善</li></ul>
+          <a class="mini-nav" href="https://www.google.com/maps/search/?api=1&query=貓空纜車動物園站" target="_blank" rel="noopener">導航 ↗</a>
+        </div>
+      </div>
+
+      <div class="stop g">
+        <span class="time">方案 B</span>
+        <div class="card opt">
+          <p class="h">石碇老街 + 千島湖觀景</p>
+          <ul><li>106 沿線，吊腳樓、豆腐美食，千島湖湖景絕美</li></ul>
+          <a class="mini-nav" href="https://www.google.com/maps/search/?api=1&query=石碇千島湖八卦茶園" target="_blank" rel="noopener">導航 ↗</a>
+        </div>
+      </div>
+
+      <div class="stop">
+        <span class="time">午後</span>
+        <div class="card">
+          <p class="h">走國道3號深坑交流道回家</p>
+          <p class="drive">🚗 深坑→交流道約 5 分，回程各方向都順</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- KIDS -->
+  <section id="kids" class="block" style="scroll-margin-top:64px;">
+    <h3>👧🧒 帶小孩的貼心微調</h3>
+    <div class="agegrid">
+      <div class="agecard">
+        <p class="who">升中班 · 4–5 歲</p>
+        <ul>
+          <li>節奏放慢，帶<b>零食、水、濕紙巾</b>，午後留午睡／車上補眠彈性</li>
+          <li>十分瀑布有階梯牽好手；動物園善用<b>遊園列車</b></li>
+          <li>泳池備<b>臂圈／浮具</b>，全程一對一看顧</li>
+          <li>放天燈由大人主導，讓他<b>畫圖案</b>參與</li>
+        </ul>
+      </div>
+      <div class="agecard green">
+        <p class="who">升小三 · 8–9 歲</p>
+        <ul>
+          <li>能走較長步道、自己<b>寫天燈願望</b>、看動物園解說牌</li>
+          <li>菁桐／十分鐵道探索、投許願竹筒正合這年紀</li>
+          <li>可讓他當<b>小小領隊</b>看地圖找下一站</li>
+        </ul>
+      </div>
+    </div>
+    <p style="font-size:12.5px; color:var(--ink-faint); margin:12px 0 0;">💡 行程「以小的體力為準」最不會累垮 —— 每天留一段空白（回房休息／泳池），全家反而玩更盡興。</p>
+  </section>
+
+  <!-- DRIVE -->
+  <section id="drive" class="block" style="scroll-margin-top:64px;">
+    <h3>🧭 自駕重點</h3>
+    <ul class="tips">
+      <li><span class="ic">🛣</span><span>主走 <b>106 縣道</b>，山路彎多路窄，放慢、注意會車與火車平交道</span></li>
+      <li><span class="ic">🅿</span><span>平溪／十分／深坑老街<b>付費停車</b>，假日早到卡位；福容<b>免費停車</b></span></li>
+      <li><span class="ic">⛽</span><span>山區加油站少，進平溪前或下山前<b>先加滿油</b></span></li>
+      <li><span class="ic">🌦</span><span>7 月炎熱＋午後雷陣雨，防曬、<b>雨具</b>、玩水換洗衣物都帶著</span></li>
+      <li><span class="ic">👟</span><span>瀑布步道濕滑，穿<b>防滑鞋</b>，牽好小孩</span></li>
+    </ul>
+  </section>
+
+  <div class="block">
+    <h3>⏱️ 車程速查</h3>
+    <table class="drv tnum">
+      <tr><td>溪隱之宿 → 十分瀑布</td><td>10–12 分</td></tr>
+      <tr><td>十分 → 菁桐</td><td>約 20 分</td></tr>
+      <tr><td>菁桐 → 平溪</td><td>5–8 分</td></tr>
+      <tr><td>平溪 → 木柵動物園</td><td>約 40 分</td></tr>
+      <tr><td>動物園 → 深坑（福容）</td><td>12–15 分</td></tr>
+      <tr><td>深坑 → 國道3號交流道</td><td>約 5 分</td></tr>
+    </table>
+  </div>
+
+  <footer>
+    <div class="flame">🏮</div>
+    祝旅途愉快，天燈願望都成真！<br>
+    點各站的「導航 ↗」即可用手機開啟 Google 地圖
+  </footer>
+
+</div>
+</div>
