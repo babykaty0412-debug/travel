@@ -1,4 +1,7 @@
+import { fileURLToPath } from 'node:url';
 import { defineConfig, type Plugin } from 'vite';
+
+const entry = (p: string): string => fileURLToPath(new URL(p, import.meta.url));
 
 // Content-Security-Policy：限制資源來源，降低 XSS/注入風險
 const CSP = [
@@ -35,5 +38,11 @@ export default defineConfig({
     target: 'es2022',
     sourcemap: false,
     modulePreload: { polyfill: false }, // 避免注入 inline script，符合 script-src 'self'
+    rollupOptions: {
+      input: {
+        main: entry('./index.html'), // vanilla TS 版
+        react: entry('./react/index.html'), // React 版
+      },
+    },
   },
 });

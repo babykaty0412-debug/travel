@@ -6,10 +6,15 @@
 [![CodeQL](https://github.com/babykaty0412-debug/travel/actions/workflows/codeql.yml/badge.svg)](https://github.com/babykaty0412-debug/travel/actions/workflows/codeql.yml)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)
 ![Vite](https://img.shields.io/badge/Vite-5-646cff)
+![React](https://img.shields.io/badge/React-18-61dafb)
 ![PWA](https://img.shields.io/badge/PWA-offline-5a0fc8)
 ![No runtime deps](https://img.shields.io/badge/runtime%20deps-Leaflet%20only-success)
 
-**🔗 Live demo：** https://babykaty0412-debug.github.io/travel/
+**🔗 Live demo：**
+- Vanilla TS 版：https://babykaty0412-debug.github.io/travel/
+- **React 版**：https://babykaty0412-debug.github.io/travel/react/
+
+> 同一份 `trip.json`、同一套 CSS、同一組型別，用 **兩種實作**（零框架 vanilla TS ＋ React 18 hooks）呈現 —— 展示對框架的取捨判斷，而非為用而用。
 
 ---
 
