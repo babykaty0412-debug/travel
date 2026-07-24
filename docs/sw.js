@@ -1,6 +1,6 @@
 /* 平溪×深坑 行程網站 Service Worker — 離線快取 */
-var CACHE = 'pingxi-shenkeng-v1';
-var CORE = ['./', './index.html', './manifest.webmanifest', './icon.svg'];
+var CACHE = 'pingxi-shenkeng-v2';
+var CORE = ['./', './index.html', './styles.css', './app.js', './data/trip.json', './manifest.webmanifest', './icon.svg'];
 
 self.addEventListener('install', function(e){
   e.waitUntil(
