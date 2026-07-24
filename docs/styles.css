@@ -1,15 +1,15 @@
 /* ===== Design tokens ===== */
 :root{
   --bg:#f6efe1; --bg2:#efe4d0; --surface:#fffaf0; --surface-2:#fbf3e3;
-  --ink:#2b2018; --ink-soft:#6d5d4d; --ink-faint:#93826f;
-  --accent:#d5601f; --accent-2:#e8893a; --glow:#f0a24b;
-  --green:#4f7a55; --green-soft:#e2ece0; --blue:#3f6f97;
+  --ink:#2b2018; --ink-soft:#6d5d4d; --ink-faint:#7a6a58;
+  --accent:#b85017; --accent-2:#c0551a; --glow:#f0a24b;
+  --green:#497150; --green-soft:#e2ece0; --blue:#3f6f97;
   --line:#e6d9c3; --line-strong:#d8c6a8; --flame:#d9422a;
   --shadow:0 6px 22px rgba(90,60,20,.10); --radius:18px;
 }
 :root[data-theme="dark"]{
   --bg:#121a25; --bg2:#0e151e; --surface:#1b2635; --surface-2:#212e3f;
-  --ink:#f2e9d7; --ink-soft:#b8ad9a; --ink-faint:#8b8271;
+  --ink:#f2e9d7; --ink-soft:#b8ad9a; --ink-faint:#a29889;
   --accent:#f0a24b; --accent-2:#f6b862; --glow:#f6b862;
   --green:#7fae8b; --green-soft:#22322a; --blue:#7aa6c9;
   --line:#2b3a4c; --line-strong:#37485c; --flame:#ef6a48;
@@ -18,7 +18,7 @@
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#121a25; --bg2:#0e151e; --surface:#1b2635; --surface-2:#212e3f;
-    --ink:#f2e9d7; --ink-soft:#b8ad9a; --ink-faint:#8b8271;
+    --ink:#f2e9d7; --ink-soft:#b8ad9a; --ink-faint:#a29889;
     --accent:#f0a24b; --accent-2:#f6b862; --glow:#f6b862;
     --green:#7fae8b; --green-soft:#22322a; --blue:#7aa6c9;
     --line:#2b3a4c; --line-strong:#37485c; --flame:#ef6a48;
@@ -90,7 +90,7 @@ section{scroll-margin-top:62px;}
 .pop-h{font-weight:800; font-size:14px; color:#222;}
 .pop-d{font-size:12px; color:#555; margin:3px 0 8px;}
 .pop-nav{display:inline-block; text-decoration:none; font-size:12.5px; font-weight:700; color:#fff;
-  background:#d5601f; padding:6px 11px; border-radius:8px;}
+  background:#b85017; padding:6px 11px; border-radius:8px;}
 
 /* ===== Stay cards ===== */
 .stays{display:grid; gap:12px;}

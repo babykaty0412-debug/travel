@@ -1,0 +1,9 @@
+# 安全標頭 — Netlify / Cloudflare Pages 會套用此檔；GitHub Pages 不支援自訂標頭（會忽略）。
+# CSP 另以 <meta> 注入在 index.html，確保 GitHub Pages 上也有基本防護。
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), interest-cohort=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com; connect-src 'self' https://router.project-osrm.org; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'

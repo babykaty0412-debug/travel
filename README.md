@@ -7,6 +7,7 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)
 ![Vite](https://img.shields.io/badge/Vite-5-646cff)
 ![React](https://img.shields.io/badge/React-18-61dafb)
+![a11y](https://img.shields.io/badge/a11y-WCAG%202%20AA-success)
 ![PWA](https://img.shields.io/badge/PWA-offline-5a0fc8)
 ![No runtime deps](https://img.shields.io/badge/runtime%20deps-Leaflet%20only-success)
 
@@ -72,7 +73,7 @@ src/
 ## 🛠️ 工程實踐
 
 - **CI（GitHub Actions）**：`tsc --strict` → ESLint → Prettier → **Vitest 單元測試** → **JSON Schema 驗資料** → `npm audit` → Vite build → **Playwright E2E**，全綠才算過
-- **測試**：Vitest 單元測試（純邏輯）+ Playwright E2E ×6（渲染、倒數、主題、許願、打包、複選）
+- **測試**：Vitest 單元測試（純邏輯）+ **Playwright ×10**（vanilla + React 的渲染／倒數／主題／許願／打包／複選 + **axe 無障礙**）
 - **型別 + 資料驗證**：`trip.json` 有 TS 型別 + JSON Schema + **執行期 `assertTrip` 守衛**三重把關
 - **效能**：production bundle 約 **JS 50 KB / CSS 10 KB（gzip）**
 - **PWA / 離線**：network-first 網頁 + cache-first 資源
@@ -81,7 +82,10 @@ src/
 
 - **Content-Security-Policy**（production build 注入）限制 script/style/img/connect 來源
 - **輸入 escape**：使用者輸入（願望、署名）全經 HTML escape，防 stored XSS
-- **CodeQL**（`security-and-quality` 查詢）+ **Dependabot** + **`npm audit`** 自動掃描相依與程式碼漏洞
+- **CodeQL**（`security-and-quality`）+ **Dependabot** + **`npm audit`** + **OpenSSF Scorecard** 自動掃描相依、程式碼與供應鏈
+- **無障礙**：**axe-core** 自動檢測（WCAG 2 AA），色彩對比全數達標
+- **Lighthouse CI**：效能／a11y／best-practices／SEO 分數報告（每次 push）
+- **`_headers`**：Permissions-Policy／HSTS／Referrer-Policy／X-Frame-Options（部署到 Netlify/Cloudflare 時生效；GitHub Pages 以 `<meta>` CSP 為主）
 - **無 CDN**（Leaflet 已 bundle）→ 無第三方 script 供應鏈風險；無 cookie、無後端 → 攻擊面小
 
 ## 💻 本機開發

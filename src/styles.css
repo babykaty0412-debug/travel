@@ -6,11 +6,11 @@
   --surface-2: #fbf3e3;
   --ink: #2b2018;
   --ink-soft: #6d5d4d;
-  --ink-faint: #93826f;
-  --accent: #d5601f;
-  --accent-2: #e8893a;
+  --ink-faint: #7a6a58;
+  --accent: #b85017;
+  --accent-2: #c0551a;
   --glow: #f0a24b;
-  --green: #4f7a55;
+  --green: #497150;
   --green-soft: #e2ece0;
   --blue: #3f6f97;
   --line: #e6d9c3;
@@ -26,7 +26,7 @@
   --surface-2: #212e3f;
   --ink: #f2e9d7;
   --ink-soft: #b8ad9a;
-  --ink-faint: #8b8271;
+  --ink-faint: #a29889;
   --accent: #f0a24b;
   --accent-2: #f6b862;
   --glow: #f6b862;
@@ -46,7 +46,7 @@
     --surface-2: #212e3f;
     --ink: #f2e9d7;
     --ink-soft: #b8ad9a;
-    --ink-faint: #8b8271;
+    --ink-faint: #a29889;
     --accent: #f0a24b;
     --accent-2: #f6b862;
     --glow: #f6b862;
@@ -361,7 +361,7 @@ section {
   font-size: 12.5px;
   font-weight: 700;
   color: #fff;
-  background: #d5601f;
+  background: #b85017;
   padding: 6px 11px;
   border-radius: 8px;
 }
