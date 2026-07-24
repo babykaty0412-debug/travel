@@ -195,6 +195,9 @@
   .sug{font:inherit; font-size:12.5px; font-weight:700; color:var(--accent); background:var(--surface-2); border:1px solid var(--line-strong); border-radius:999px; padding:6px 12px; cursor:pointer;}
   .sug:active{transform:translateY(1px);}
   .sug:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+  .sug.active{color:#fff; background:var(--accent); border-color:var(--accent);}
+  .wish-x{margin-left:3px; border:none; background:transparent; color:var(--ink-faint); font-size:11px; cursor:pointer; padding:0 2px; line-height:1;}
+  .wish-x:hover{color:var(--flame);}
 
   /* flying lantern + fx */
   .fly{position:fixed; left:50%; bottom:-56px; z-index:45; pointer-events:none; display:flex; flex-direction:column; align-items:center; will-change:transform,opacity; animation:rise linear forwards;}
@@ -408,7 +411,7 @@
     <div class="block">
       <p class="wish-intro">寫下願望，按一下放天燈，看它冉冉升空 ✨（願望會存在這支手機裡）</p>
       <div class="wish-form">
-        <input id="wishText" maxlength="30" placeholder="輸入願望…（例：全家平安健康）" aria-label="願望">
+        <input id="wishText" maxlength="40" placeholder="輸入願望…（例：全家平安健康）" aria-label="願望">
         <input id="wishWho" maxlength="8" placeholder="署名（選填）" aria-label="署名">
         <button id="wishBtn" type="button">放天燈 🏮</button>
       </div>
@@ -571,9 +574,12 @@
   function renderWall(){
     if(!wishes.length){ wall.innerHTML = '<p class="wish-empty">還沒有天燈，來放第一盞吧 🏮</p>'; return; }
     wall.innerHTML = '';
-    wishes.slice(0,40).forEach(function(w){
+    wishes.slice(0,40).forEach(function(w, idx){
       var c = document.createElement('span'); c.className = 'wish-chip';
       c.innerHTML = '🏮 <span class="t">'+esc(w.text)+'</span>' + (w.who ? ' <span class="w">— '+esc(w.who)+'</span>' : '');
+      var x = document.createElement('button'); x.type='button'; x.className='wish-x'; x.setAttribute('aria-label','移除這盞天燈'); x.textContent='✕';
+      x.addEventListener('click', function(){ wishes.splice(idx,1); saveWishes(); renderWall(); });
+      c.appendChild(x);
       wall.appendChild(c);
     });
   }
@@ -612,17 +618,33 @@
     saveWishes(); renderWall(); flyLantern(t); confetti();
     toast('天燈升空，願望成真 🏮✨');
     wishText.value = '';
+    if(typeof syncChips === 'function'){ syncChips(); }
   }
   wishBtn.addEventListener('click', releaseWish);
   wishText.addEventListener('keydown', function(e){ if(e.key==='Enter'){ releaseWish(); } });
 
   var SUGGESTS = ['全家平安健康','旅途平安順利','心想事成','學業進步','天天開心','身體健康','財源滾滾','考試一百分','爸媽我愛你','快快長大'];
   var sugWrap = document.getElementById('wishSuggests');
+  function syncChips(){
+    var v = wishText.value;
+    Array.prototype.forEach.call(sugWrap.children, function(b){
+      b.classList.toggle('active', v.indexOf(b.textContent) !== -1);
+    });
+  }
   SUGGESTS.forEach(function(s){
     var b = document.createElement('button'); b.type='button'; b.className='sug'; b.textContent=s;
-    b.addEventListener('click', function(){ wishText.value = s; wishText.focus(); });
+    b.addEventListener('click', function(){
+      var v = wishText.value.trim();
+      if(v.indexOf(s) !== -1){
+        v = v.split('、').filter(function(x){ return x && x !== s; }).join('、');   // 取消
+      } else {
+        v = v ? v + '、' + s : s;                                                    // 加入
+      }
+      wishText.value = v; syncChips(); wishText.focus();
+    });
     sugWrap.appendChild(b);
   });
+  wishText.addEventListener('input', syncChips);
 
   renderWall();
 })();
