@@ -6,6 +6,12 @@
 <title>平溪 × 深坑 親子自駕 3天2夜</title>
 <meta name="description" content="平溪天燈線到深坑老街的親子自駕行程，含互動地圖、美食名店、打包清單。">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ctext y='26' font-size='26'%3E%F0%9F%8F%AE%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#d5601f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="平溪深坑">
+<link rel="apple-touch-icon" href="icon.svg">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <style>
   :root{
@@ -68,6 +74,8 @@
   .meta-row{display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:15px;}
   .chip{font-size:12.5px; padding:5px 12px; border-radius:999px; background:var(--surface); border:1px solid var(--line); color:var(--ink-soft); font-weight:600;}
   .chip b{color:var(--ink);}
+  .countdown{display:inline-block; margin:14px auto 0; font-size:13px; font-weight:800; padding:7px 15px; border-radius:999px; color:#fff; background:linear-gradient(180deg,var(--accent-2),var(--accent)); box-shadow:0 3px 12px color-mix(in srgb,var(--accent) 38%, transparent);}
+  .countdown:empty{display:none;}
 
   /* nav */
   nav{position:sticky; top:0; z-index:40; margin:14px -16px 6px; padding:9px 16px;
@@ -239,6 +247,7 @@
       <span class="chip">👨‍👩‍👧‍👦 <b>2 大 2 小</b></span>
       <span class="chip">🚗 自駕</span>
     </div>
+    <div class="countdown" id="countdown"></div>
   </header>
 
   <nav aria-label="快速跳轉">
@@ -457,6 +466,23 @@
     try{ localStorage.setItem('theme', next); }catch(e){}
     applyBtn();
   });
+
+  /* ---------- Countdown ---------- */
+  (function(){
+    var el = document.getElementById('countdown'); if(!el) return;
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var start = new Date(2026,6,24), end = new Date(2026,6,26), DAY = 86400000;
+    if(today < start){
+      var d = Math.round((start - today)/DAY);
+      el.textContent = d===1 ? '🚗 明天就出發！' : ('🚗 距離出發還有 ' + d + ' 天');
+    } else if(today <= end){
+      var n = Math.floor((today - start)/DAY) + 1;
+      el.textContent = '🏮 旅程進行中 · 今天是 Day ' + n + ' / 3';
+    } else {
+      el.textContent = '🎉 旅程圓滿結束，期待下次出遊！';
+    }
+  })();
 
   /* ---------- Map ---------- */
   var PLACES = [
@@ -679,6 +705,13 @@
 
   renderWall();
 })();
+
+/* ---------- PWA: register service worker for offline use ---------- */
+if('serviceWorker' in navigator){
+  window.addEventListener('load', function(){
+    navigator.serviceWorker.register('sw.js').catch(function(){});
+  });
+}
 </script>
 </body>
 </html>
