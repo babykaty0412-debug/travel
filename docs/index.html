@@ -190,6 +190,11 @@
   .wish-chip .t{font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:180px;}
   .wish-chip .w{color:var(--ink-faint); flex:0 0 auto;}
   .wish-empty{font-size:12.5px; color:var(--ink-faint); margin-top:12px;}
+  .sug-hint{font-size:12px; color:var(--ink-faint); margin:12px 0 0;}
+  .wish-suggests{display:flex; flex-wrap:wrap; gap:7px; margin-top:7px;}
+  .sug{font:inherit; font-size:12.5px; font-weight:700; color:var(--accent); background:var(--surface-2); border:1px solid var(--line-strong); border-radius:999px; padding:6px 12px; cursor:pointer;}
+  .sug:active{transform:translateY(1px);}
+  .sug:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
 
   /* flying lantern + fx */
   .fly{position:fixed; left:50%; bottom:-56px; z-index:45; pointer-events:none; display:flex; flex-direction:column; align-items:center; will-change:transform,opacity; animation:rise linear forwards;}
@@ -407,6 +412,8 @@
         <input id="wishWho" maxlength="8" placeholder="署名（選填）" aria-label="署名">
         <button id="wishBtn" type="button">放天燈 🏮</button>
       </div>
+      <p class="sug-hint">💡 想不到寫什麼？點一下帶入願望：</p>
+      <div class="wish-suggests" id="wishSuggests"></div>
       <div class="wish-wall" id="wishWall"></div>
     </div>
   </section>
@@ -608,6 +615,15 @@
   }
   wishBtn.addEventListener('click', releaseWish);
   wishText.addEventListener('keydown', function(e){ if(e.key==='Enter'){ releaseWish(); } });
+
+  var SUGGESTS = ['全家平安健康','旅途平安順利','心想事成','學業進步','天天開心','身體健康','財源滾滾','考試一百分','爸媽我愛你','快快長大'];
+  var sugWrap = document.getElementById('wishSuggests');
+  SUGGESTS.forEach(function(s){
+    var b = document.createElement('button'); b.type='button'; b.className='sug'; b.textContent=s;
+    b.addEventListener('click', function(){ wishText.value = s; wishText.focus(); });
+    sugWrap.appendChild(b);
+  });
+
   renderWall();
 })();
 </script>
