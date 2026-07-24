@@ -4,6 +4,7 @@ import './styles.css';
 import type { Trip } from './types';
 import { must } from './util';
 import { buildPage } from './render';
+import { assertTrip } from './logic';
 import { currentIsDark, initTheme } from './theme';
 import { initMap, type MapController } from './map';
 import { initCountdown, initScrollSpy, initBackToTop, initReveal, initPacking } from './ui';
@@ -24,7 +25,9 @@ async function main(): Promise<void> {
   try {
     const res = await fetch(`${import.meta.env.BASE_URL}data/trip.json`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    data = (await res.json()) as Trip;
+    const json: unknown = await res.json();
+    assertTrip(json); // 執行期資料守衛
+    data = json;
   } catch {
     app.innerHTML =
       '<p class="maphint" style="padding:40px 0;text-align:center;font-size:14px">行程載入失敗，請確認網路後重新整理 🔄</p>';

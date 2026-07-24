@@ -3,6 +3,7 @@
 > 一個**資料驅動、離線可用**的互動式旅遊行程網站 —— 用一份 `trip.json` 驅動整個介面（時間軸、互動地圖、美食、打包清單、天燈許願牆）。
 
 [![CI](https://github.com/babykaty0412-debug/travel/actions/workflows/ci.yml/badge.svg)](https://github.com/babykaty0412-debug/travel/actions/workflows/ci.yml)
+[![CodeQL](https://github.com/babykaty0412-debug/travel/actions/workflows/codeql.yml/badge.svg)](https://github.com/babykaty0412-debug/travel/actions/workflows/codeql.yml)
 ![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)
 ![Vite](https://img.shields.io/badge/Vite-5-646cff)
 ![PWA](https://img.shields.io/badge/PWA-offline-5a0fc8)
@@ -65,11 +66,18 @@ src/
 
 ## 🛠️ 工程實踐
 
-- **CI（GitHub Actions）**：`tsc --strict` → ESLint → Prettier → **JSON Schema 驗資料** → Vite build → **Playwright E2E**，全綠才算過
-- **E2E 測試**：6 條涵蓋渲染、倒數、主題、許願、打包、複選
-- **型別安全**：`trip.json` 有 TS 型別 + JSON Schema 雙重把關，改資料打錯 CI 會擋
+- **CI（GitHub Actions）**：`tsc --strict` → ESLint → Prettier → **Vitest 單元測試** → **JSON Schema 驗資料** → `npm audit` → Vite build → **Playwright E2E**，全綠才算過
+- **測試**：Vitest 單元測試（純邏輯）+ Playwright E2E ×6（渲染、倒數、主題、許願、打包、複選）
+- **型別 + 資料驗證**：`trip.json` 有 TS 型別 + JSON Schema + **執行期 `assertTrip` 守衛**三重把關
 - **效能**：production bundle 約 **JS 50 KB / CSS 10 KB（gzip）**
 - **PWA / 離線**：network-first 網頁 + cache-first 資源
+
+### 🔒 安全
+
+- **Content-Security-Policy**（production build 注入）限制 script/style/img/connect 來源
+- **輸入 escape**：使用者輸入（願望、署名）全經 HTML escape，防 stored XSS
+- **CodeQL**（`security-and-quality` 查詢）+ **Dependabot** + **`npm audit`** 自動掃描相依與程式碼漏洞
+- **無 CDN**（Leaflet 已 bundle）→ 無第三方 script 供應鏈風險；無 cookie、無後端 → 攻擊面小
 
 ## 💻 本機開發
 

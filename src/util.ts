@@ -40,4 +40,5 @@ export const store = {
 };
 
 export const prefersReduced =
-  window.matchMedia?.('(prefers-reduced-motion:reduce)').matches ?? false;
+  typeof window !== 'undefined' &&
+  (window.matchMedia?.('(prefers-reduced-motion:reduce)').matches ?? false);

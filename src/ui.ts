@@ -1,26 +1,17 @@
 /** 週邊互動：出發倒數、滑動高亮導覽、回頂端、捲動揭示、打包清單 */
 import { must, store, prefersReduced } from './util';
 import { confetti, toast } from './fx';
-
-const DAY_MS = 86_400_000;
+import { countdownLabel } from './logic';
 
 export function initCountdown(trip: { start: string; end: string }): void {
   const el = must('#countdown');
   const now = new Date();
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const start = new Date(`${trip.start}T00:00:00`);
-  const end = new Date(`${trip.end}T00:00:00`);
-
-  if (today < start) {
-    const d = Math.round((+start - +today) / DAY_MS);
-    el.textContent = d === 1 ? '🚗 明天就出發！' : `🚗 距離出發還有 ${d} 天`;
-  } else if (today <= end) {
-    const n = Math.floor((+today - +start) / DAY_MS) + 1;
-    const total = Math.round((+end - +start) / DAY_MS) + 1;
-    el.textContent = `🏮 旅程進行中 · 今天是 Day ${n} / ${total}`;
-  } else {
-    el.textContent = '🎉 旅程圓滿結束，期待下次出遊！';
-  }
+  el.textContent = countdownLabel(
+    today,
+    new Date(`${trip.start}T00:00:00`),
+    new Date(`${trip.end}T00:00:00`),
+  );
 }
 
 export function initScrollSpy(): void {
