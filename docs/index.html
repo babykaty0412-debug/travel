@@ -196,6 +196,7 @@
   .sug:active{transform:translateY(1px);}
   .sug:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
   .sug.active{color:#fff; background:var(--accent); border-color:var(--accent);}
+  .sug.dice{color:#fff; background:linear-gradient(180deg,var(--accent-2),var(--accent)); border-color:var(--accent); box-shadow:0 2px 8px color-mix(in srgb,var(--accent) 38%, transparent);}
   .wish-x{margin-left:3px; border:none; background:transparent; color:var(--ink-faint); font-size:11px; cursor:pointer; padding:0 2px; line-height:1;}
   .wish-x:hover{color:var(--flame);}
 
@@ -415,7 +416,7 @@
         <input id="wishWho" maxlength="8" placeholder="署名（選填）" aria-label="署名">
         <button id="wishBtn" type="button">放天燈 🏮</button>
       </div>
-      <p class="sug-hint">💡 想不到寫什麼？點一下帶入願望：</p>
+      <p class="sug-hint">💡 想不到寫什麼？點一下帶入願望（可複選、可按 🎲 隨機）：</p>
       <div class="wish-suggests" id="wishSuggests"></div>
       <div class="wish-wall" id="wishWall"></div>
     </div>
@@ -645,6 +646,18 @@
     sugWrap.appendChild(b);
   });
   wishText.addEventListener('input', syncChips);
+
+  var POOL = SUGGESTS.concat(['歲歲平安','闔家歡樂','萬事如意','幸福美滿','夢想成真','天天好心情','出遊順利','天氣晴朗','長高高','交到好朋友','工作順利','中大獎']);
+  var dice = document.createElement('button'); dice.type='button'; dice.className='sug dice'; dice.textContent='🎲 隨機';
+  dice.addEventListener('click', function(){
+    var cur = wishText.value.trim();
+    var avail = POOL.filter(function(p){ return cur.indexOf(p) === -1; });
+    var arr = avail.length ? avail : POOL;
+    var pick = arr[Math.floor(Math.random()*arr.length)];
+    wishText.value = cur ? cur + '、' + pick : pick;
+    syncChips(); wishText.focus();
+  });
+  sugWrap.insertBefore(dice, sugWrap.firstChild);
 
   renderWall();
 })();
