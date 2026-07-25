@@ -1,0 +1,38 @@
+{
+  "name": "pingxi-shenkeng-trip",
+  "version": "1.0.0",
+  "description": "平溪 × 深坑 親子自駕行程 — 資料驅動、離線可用的互動行程網站",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173 --strictPort",
+    "lint": "eslint \"src/**/*.ts\"",
+    "format:check": "prettier --check \"src/**/*.{ts,css}\" \"react/**/*.{ts,tsx}\" \"public/**/*.json\"",
+    "validate:data": "node scripts/validate-data.mjs",
+    "test:unit": "vitest run",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "@playwright/test": "^1.48.2",
+    "@types/leaflet": "^1.9.12",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^7.18.0",
+    "@typescript-eslint/parser": "^7.18.0",
+    "ajv": "^8.17.1",
+    "eslint": "^8.57.1",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.8"
+  }
+}
